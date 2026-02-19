@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', cursive;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.container{
+    background:rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    padding:30px;
+    width:90%;
+    max-width:420px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    animation: pop 1s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(0.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+h1{
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    font-size:18px;
+    color:#ff5e78;
+    min-height:150px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation: fade 0.5s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+button{
+    margin-top:20px;
+    padding:12px 30px;
+    border:none;
+    border-radius:50px;
+    background:#ff5e78;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff2f55;
+    transform:scale(1.05);
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    from{bottom:-20px;opacity:1;}
+    to{bottom:100%;opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Birthday ❤️</h1>
+    <div class="card" id="wishCard"></div>
+    <button onclick="nextWish()">Next 💖</button>
+</div>
+
+<script>
+const wishes = [
+"Happy Birthday meri jaan 💕 Tum meri life ki sabse khoobsurat smile ho 😘",
+"Har din tumhari hansi meri duniya bright kar deti hai ✨",
+"Meri dua hai tumhari zindagi hamesha khushiyon se bhari rahe 🌸",
+"Chahe jo bhi ho, main hamesha tumhare saath hoon ❤️",
+"Thank you meri life me aane ke liye 🥹💖",
+"Aaj ka din sirf tumhara hai, enjoy it my love 🎂🎉",
+"I love you more than words can say 💞"
+];
+
+let index = 0;
+const card = document.getElementById("wishCard");
+card.innerText = wishes[index];
+
+function nextWish(){
+    index++;
+    if(index >= wishes.length){
+        index = 0;
+    }
+    card.style.animation = "none";
+    void card.offsetWidth;
+    card.style.animation = "fade 0.5s ease";
+    card.innerText = wishes[index];
+}
+
+// floating hearts
+setInterval(()=>{
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},500);
+</script>
+
+</body>
+</html>
